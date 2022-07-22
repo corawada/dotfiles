@@ -44,10 +44,18 @@ endif
 "########################### PLUGINS ################################# 
 " plugins settings 
 
-colorscheme edge
+colorscheme mpyceberg
 set t_Co=256
 set laststatus=2
 filetype plugin indent on
+
+" netrw
+filetype plugin on
+let g:netrw_liststyle=1
+let g:netrw_banner=0
+let g:netrw_sizestyle='H'
+let g:netrw_timefmt="%Y/%m/%d(%a) %H:%M:%S"
+let g:netrw_preview=1
 
 " vim-airline
 let g:airline#extensions#tabline#enabled=1
@@ -59,9 +67,17 @@ let g:airline_left_sep = '<'
 nmap <C-p> <Plug>AirlineSelectPrevTab
 nmap <C-n> <Plug>AirlineSelectNextTab
 
-" NERDTree
-nnoremap <silent><C-e> :NERDTreeToggle<CR>
+" vsession
+let g:vsession_path = '~/.vim/sessions'
+let g:vsession_save_last_on_leave = 0
+let g:vsession_ui = 'quickpick'
 
+" session path
+let s:session_path = expand('~/.vim/sessions')
+
+if !isdirectory(s:session_path)
+  call mkdir(s:session_path, "p")
+endif
 " ###################### DEFAULT SETTINGS ############################
 
 " settings
@@ -75,6 +91,8 @@ set showcmd
 " views
 set number
 set cursorline
+syntax on
+
 " set cursorcolumn
 set virtualedit=onemore
 set smartindent
@@ -85,7 +103,6 @@ set wildmode=list:longest
 
 nnoremap j gj
 nnoremap k gk
-syntax enable
 
 " Tab
 set expandtab
@@ -102,25 +119,46 @@ nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
 " 操作
 inoremap <silent> jj <Esc>
-inoremap <silent> lll <Esc>la
 
-" compliment
-inoremap { {}<Left>
-inoremap {{ {}<Right>
-inoremap {<Enter> {}<Left><CR><ESC><S-0>
-inoremap ( ()<Left>
-inoremap (( ()<Right>
-inoremap (<Enter> ()<Left><CR><ESC><S-0>
-inoremap [ []<Left>
-inoremap [[ []<Right>
-inoremap [<Enter> []<Left><CR><ESC><S-0>
-
-inoremap < <><Left>
-inoremap << <><Right>
-inoremap <<Enter> <><Left><CR><ESC><S-0>
-
-inoremap ' ''<Left>
-inoremap '' ''<Right>
-inoremap " ""<Left>
-inoremap "" ""<Right>
+"----------------------------------------------------------
+" カラースキーム編集用
+"----------------------------------------------------------
+" ハイライトグループを知るコマンド:SyntaxInfoを実装
+function! s:get_syn_id(transparent)
+  let synid = synID(line("."), col("."), 1)
+  if a:transparent
+    return synIDtrans(synid)
+  else
+    return synid
+  endif
+endfunction
+function! s:get_syn_attr(synid)
+  let name = synIDattr(a:synid, "name")
+  let ctermfg = synIDattr(a:synid, "fg", "cterm")
+  let ctermbg = synIDattr(a:synid, "bg", "cterm")
+  let guifg = synIDattr(a:synid, "fg", "gui")
+  let guibg = synIDattr(a:synid, "bg", "gui")
+  return {
+        \ "name": name,
+        \ "ctermfg": ctermfg,
+        \ "ctermbg": ctermbg,
+        \ "guifg": guifg,
+        \ "guibg": guibg}
+endfunction
+function! s:get_syn_info()
+  let baseSyn = s:get_syn_attr(s:get_syn_id(0))
+  echo "name: " . baseSyn.name .
+        \ " ctermfg: " . baseSyn.ctermfg .
+        \ " ctermbg: " . baseSyn.ctermbg .
+        \ " guifg: " . baseSyn.guifg .
+        \ " guibg: " . baseSyn.guibg
+  let linkedSyn = s:get_syn_attr(s:get_syn_id(1))
+  echo "link to"
+  echo "name: " . linkedSyn.name .
+        \ " ctermfg: " . linkedSyn.ctermfg .
+        \ " ctermbg: " . linkedSyn.ctermbg .
+        \ " guifg: " . linkedSyn.guifg .
+        \ " guibg: " . linkedSyn.guibg
+endfunction
+command! SyntaxInfo call s:get_syn_info()
 
