@@ -22,6 +22,26 @@ repo = 'Townk/vim-autoclose'
 [[plugins]]
 repo = 'LeafCage/vimhelpgenerator'
 
+# translate
+[[plugins]]
+repo = 'skanehira/translate.vim'
+
+# comment
+[[plugins]]
+repo = 'tomtom/tcomment_vim'
+
+# indent visible
+[[plugins]]
+repo = 'Yggdroot/indentLine'
+
+# complement
+[[plugins]]
+repo = 'davidhalter/jedi-vim'
+
+# dart vim-plugin
+[[plugins]]
+repo = 'dart-lang/dart-vim-plugin'
+
 #======== colorscheme =========
 [[plugins]]
 repo = 'tomasr/molokai'

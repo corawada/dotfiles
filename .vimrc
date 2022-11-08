@@ -48,6 +48,7 @@ colorscheme mpyceberg
 set t_Co=256
 set laststatus=2
 filetype plugin indent on
+let g:dart_format_on_save = 1
 
 " netrw
 filetype plugin on
@@ -92,6 +93,7 @@ set showcmd
 set number
 set cursorline
 syntax on
+set foldmethod=indent
 
 " set cursorcolumn
 set virtualedit=onemore
@@ -119,6 +121,24 @@ nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
 " 操作
 inoremap <silent> jj <Esc>
+
+" 自動実行
+filetype on
+
+augroup vimrc
+    " Remove all autocommands in this group
+    autocmd!
+
+    " <F5> key execution
+    " autocmd FileType java        nmap <buffer> <F5> :!javac -encoding UTF-8 % && java %<<CR>
+    " autocmd FileType javascript  nmap <buffer> <F5> :!node %<CR>
+    " autocmd FileType php         nmap <buffer> <F5> :!php %<CR>
+    autocmd FileType python      nmap <buffer> <F5> :!python3 %<CR>
+    " autocmd FileType ruby        nmap <buffer> <F5> :!ruby %<CR>
+    autocmd FileType go          nmap <buffer> <F5> :!go run %<CR>
+    " autocmd FileType groovy      nmap <buffer> <F5> :!groovy %<CR>
+    autocmd FileType vim         nmap <buffer> <F5> :source %<CR>
+augroup END
 
 "----------------------------------------------------------
 " カラースキーム編集用
