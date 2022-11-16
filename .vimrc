@@ -140,6 +140,12 @@ augroup vimrc
     autocmd FileType vim         nmap <buffer> <F5> :source %<CR>
 augroup END
 
+" 矢印無効
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
+
 "----------------------------------------------------------
 " カラースキーム編集用
 "----------------------------------------------------------
