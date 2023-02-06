@@ -42,6 +42,10 @@ repo = 'davidhalter/jedi-vim'
 [[plugins]]
 repo = 'dart-lang/dart-vim-plugin'
 
+# nerdtree
+[[plugins]]
+repo = 'preservim/nerdtree'
+
 #======== colorscheme =========
 [[plugins]]
 repo = 'tomasr/molokai'
@@ -57,3 +61,7 @@ repo = 'sainnhe/edge'
 
 [[plugins]]
 repo = 'cocopon/iceberg.vim'
+
+#======== lang =======
+# [[plugins]]
+# repo = 'pangloss/vim-javascripto'

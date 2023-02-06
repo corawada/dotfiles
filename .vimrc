@@ -79,6 +79,9 @@ let s:session_path = expand('~/.vim/sessions')
 if !isdirectory(s:session_path)
   call mkdir(s:session_path, "p")
 endif
+
+" NERDTree
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
 " ###################### DEFAULT SETTINGS ############################
 
 " settings
@@ -138,7 +141,12 @@ augroup vimrc
     autocmd FileType go          nmap <buffer> <F5> :!go run %<CR>
     " autocmd FileType groovy      nmap <buffer> <F5> :!groovy %<CR>
     autocmd FileType vim         nmap <buffer> <F5> :source %<CR>
+
+    autocmd BufNewFile,BufRead *.blade.php set syntax=html
+    autocmd BufNewFile,BufRead *.blade.php set filetype=html
 augroup END
+
+autocmd BufNewFile,BufRead *.ejs  set filetype=html
 
 " 矢印無効
 noremap <Up> <Nop>
