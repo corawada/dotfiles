@@ -9,6 +9,11 @@ repo = 'tpope/vim-fugitive'
 # Session Manage
 [[plugins]]
 repo = 'skanehira/vsession'
+hook_add = '''
+let g:vsession_path = '~/.vim/sessions'
+let g:vsession_save_last_on_leave = 0
+let g:vsession_ui = 'quickpick'
+'''
 
 # airline
 [[plugins]]
@@ -35,16 +40,19 @@ repo = 'tomtom/tcomment_vim'
 repo = 'Yggdroot/indentLine'
 
 # complement
-[[plugins]]
-repo = 'davidhalter/jedi-vim'
+# [[plugins]]
+# repo = 'davidhalter/jedi-vim'
 
 # dart vim-plugin
 [[plugins]]
 repo = 'dart-lang/dart-vim-plugin'
+hook_add = ' let g:dart_format_on_save = 1'
+
 
 # nerdtree
 [[plugins]]
 repo = 'preservim/nerdtree'
+hook_add = 'nnoremap <silent><C-e> :NERDTreeToggle<CR>'
 
 #======== colorscheme =========
 [[plugins]]
@@ -65,3 +73,17 @@ repo = 'cocopon/iceberg.vim'
 #======== lang =======
 # [[plugins]]
 # repo = 'pangloss/vim-javascripto'
+
+#======== lsp =======
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp'
+
+[[plugins]]
+repo =  'mattn/vim-lsp-settings'
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-lsp.vim'
+

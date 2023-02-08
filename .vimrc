@@ -48,7 +48,6 @@ colorscheme mpyceberg
 set t_Co=256
 set laststatus=2
 filetype plugin indent on
-let g:dart_format_on_save = 1
 
 " netrw
 filetype plugin on
@@ -68,20 +67,13 @@ let g:airline_left_sep = '<'
 nmap <C-p> <Plug>AirlineSelectPrevTab
 nmap <C-n> <Plug>AirlineSelectNextTab
 
-" vsession
-let g:vsession_path = '~/.vim/sessions'
-let g:vsession_save_last_on_leave = 0
-let g:vsession_ui = 'quickpick'
-
-" session path
+" session path for vsession?
 let s:session_path = expand('~/.vim/sessions')
 
 if !isdirectory(s:session_path)
   call mkdir(s:session_path, "p")
 endif
 
-" NERDTree
-nnoremap <silent><C-e> :NERDTreeToggle<CR>
 " ###################### DEFAULT SETTINGS ############################
 
 " settings
